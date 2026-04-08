@@ -11,21 +11,19 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 overflow-hidden isolate">
-      {/* Background Image — more visible with elegant gradient */}
+      {/* Background Image — high visibility */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1920&auto=format&fit=crop"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover opacity-30 scale-105 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
       />
 
-      {/* Gradient overlays — elegant degradê */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0E14] via-[#0A0E14]/30 via-40% to-[#0A0E14] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0A0E14]/90 via-transparent to-[#0A0E14]/90 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-[#0A0E14] via-[#0A0E14]/80 to-transparent pointer-events-none" />
+      {/* Single gradient — only darken bottom for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0E14]/70 via-[#0A0E14]/40 via-30% to-[#0A0E14]/95 pointer-events-none" />
 
-      {/* Teal glow accent */}
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse,rgba(32,202,216,0.12)_0%,rgba(32,202,216,0.04)_40%,transparent_70%)] rounded-full blur-[60px] pointer-events-none" />
+      {/* Subtle teal tint */}
+      <div className="absolute inset-0 bg-[#0A0E14]/10 mix-blend-color pointer-events-none" />
 
       {/* Pre-headline */}
       <motion.div
