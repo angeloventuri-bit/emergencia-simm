@@ -3,31 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Shield, Crosshair, Building2 } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
-const blocks = [
-  {
-    icon: Brain,
-    title: "Raciocínio vs. Memorização",
-    text: "Enquanto cursos tradicionais focam em memorização, nós desenvolvemos sua capacidade de triagem mental e tomada de decisão sob pressão extrema. Não basta saber o diagnóstico — você precisa saber o que fazer nos primeiros 60 segundos, com informação incompleta, equipe dependendo de você e o paciente deteriorando.",
-  },
-  {
-    icon: Shield,
-    title: "ACLS/ATLS vs. SIMM",
-    text: "O ACLS ensina a tratar uma parada cardiorrespiratória. Nós ensinamos você a evitar que ela aconteça. Ocupamos o espaço entre a diretriz internacional e a complexidade real do paciente grave — aquele espaço onde o protocolo não dá conta e o raciocínio clínico precisa assumir.",
-  },
-  {
-    icon: Crosshair,
-    title: "Ferramentas com Propósito",
-    text: "Do ultrassom à gasometria, cada ferramenta é ensinada com um único propósito: precisão diagnóstica imediata para aumentar a chance de sobrevida do seu paciente. Não ensinamos técnica por técnica. Ensinamos quando usar, por que usar e o que fazer com o resultado — em tempo real.",
-  },
-  {
-    icon: Building2,
-    title: "Nascidos no HC-USP",
-    text: "Nascemos dentro do maior complexo hospitalar da América Latina. Nosso ensino não é baseado apenas em livros, mas na experiência de quem trabalha nas salas de emergência mais críticas do país. Cada caso ensinado aqui foi um paciente real, tratado por nossos preceptores, no nosso pronto-socorro.",
-  },
-];
+const icons = [Brain, Shield, Crosshair, Building2];
 
 export function Difference() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 bg-[#0D1C24] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(14,42,48,0.6)_0%,transparent_60%)] pointer-events-none" />
@@ -41,17 +23,16 @@ export function Difference() {
           className="text-center mb-16"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            O que nos torna diferentes
+            {t.difference.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[28px] md:text-[44px] text-white text-shadow-neon leading-tight">
-            Não ensinamos você a passar em prova.<br className="hidden md:block" />
-            Ensinamos você a salvar vidas.
+            {t.difference.title}
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blocks.map((block, i) => {
-            const Icon = block.icon;
+          {t.difference.blocks.map((block, i) => {
+            const Icon = icons[i];
             return (
               <motion.div
                 key={block.title}

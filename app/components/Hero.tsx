@@ -5,10 +5,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "./Button";
 import CountUp from "react-countup";
-
-const HEADLINE = "Medicina de Emergência. Dessa vez, em mãos de emergencistas.";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative min-h-[90vh] lg:min-h-screen flex flex-col items-center justify-center pt-24 pb-16 overflow-hidden bg-hero-gradient isolate">
       {/* Glow Radial */}
@@ -25,7 +26,7 @@ export function Hero() {
         className="relative z-10 mb-10 px-4 py-2 rounded-full border border-[#20CAD830] bg-[#20CAD808] text-center"
       >
         <span className="font-['JetBrains_Mono'] text-[11px] md:text-[12px] text-[#20CAD8] tracking-[0.12em] uppercase drop-shadow-[0_0_6px_#20CAD8]">
-          Desde 2019 · Preceptores do HC-USP e InCor · +10.000 médicos formados · 16 cursos
+          {t.hero.preHeadline}
         </span>
       </motion.div>
 
@@ -45,7 +46,7 @@ export function Hero() {
         </motion.div>
 
         <h1 className="font-['Orbitron'] font-extrabold text-[36px] leading-[44px] lg:text-[68px] lg:leading-[76px] text-white text-shadow-neon mb-6 uppercase tracking-[0.03em]">
-          {HEADLINE.split("").map((char, index) => (
+          {t.hero.headline.split("").map((char, index) => (
             <motion.span
               key={index}
               initial={{ opacity: 0 }}
@@ -71,9 +72,7 @@ export function Hero() {
           transition={{ delay: 2.0, duration: 0.6 }}
           className="font-['Inter'] text-[16px] lg:text-[18px] text-[#B9B7BA] max-w-2xl mb-10 leading-relaxed"
         >
-          Nascemos dentro do maior complexo hospitalar da América Latina. Desenvolvemos médicos
-          que agem com convicção quando o paciente mais precisa — da teoria à beira do leito, do
-          primeiro plantão à maestria clínica.
+          {t.hero.subheadline}
         </motion.p>
 
         <motion.div
@@ -83,10 +82,10 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center gap-4 mb-6 w-full sm:w-auto"
         >
           <Button variant="primary" className="w-full sm:w-auto">
-            Quero o curso presencial — ESC
+            {t.hero.ctaPrimary}
           </Button>
           <Button variant="secondary" className="w-full sm:w-auto">
-            Acessar a SIMM Academy — Online
+            {t.hero.ctaSecondary}
           </Button>
         </motion.div>
 
@@ -96,7 +95,7 @@ export function Hero() {
           transition={{ delay: 2.6, duration: 0.6 }}
           className="font-['Inter'] text-[13px] text-[#636A6F] mb-16"
         >
-          +10.000 médicos treinados. Professores do HC-USP, InCor e Sírio-Libanês. Presente em todos os estados do Brasil.
+          {t.hero.credibility}
         </motion.p>
 
         {/* Barra de Credibilidade */}
@@ -107,10 +106,10 @@ export function Hero() {
           className="flex flex-wrap items-center justify-center gap-6 lg:gap-12"
         >
           {[
-            { value: 10000, suffix: "+", label: "Médicos Treinados", prefix: "" },
-            { value: 16, suffix: "", label: "Cursos Desenvolvidos", prefix: "" },
-            { value: 27, suffix: "", label: "Estados Alcançados", prefix: "" },
-            { value: 6, suffix: " anos", label: "De Operação", prefix: "" },
+            { value: 10000, suffix: "+", label: t.hero.stats.trained, prefix: "" },
+            { value: 16, suffix: "", label: t.hero.stats.courses, prefix: "" },
+            { value: 27, suffix: "", label: t.hero.stats.states, prefix: "" },
+            { value: 6, suffix: " anos", label: t.hero.stats.years, prefix: "" },
           ].map((stat, i) => (
             <div key={stat.label} className="contents">
               {i > 0 && <div className="w-[1px] h-10 bg-[#3A4248] hidden sm:block" />}

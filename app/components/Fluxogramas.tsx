@@ -4,15 +4,11 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./Button";
 import { FileText, Download } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Fluxogramas() {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const fluxogramas = [
-    { id: 1, title: "Conduta em IAMCSST", subtitle: "Diretrizes atualizadas AHA", category: "Cardiologia" },
-    { id: 2, title: "Manejo da Sepse", subtitle: "Protocolo Surviving Sepsis", category: "Infectologia" },
-    { id: 3, title: "Via Aérea Difícil", subtitle: "Algoritmo de intubação", category: "Procedimentos" }
-  ];
 
   return (
     <section className="py-24 bg-[#0D1C24] relative">
@@ -25,20 +21,20 @@ export function Fluxogramas() {
           className="text-center mb-16"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            Open Access · Sem Login · Sem Anúncio
+            {t.fluxogramas.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[32px] md:text-[48px] text-white text-shadow-neon">
-            Fluxogramas de Conduta.<br className="hidden md:block" /> Download Gratuito.
+            {t.fluxogramas.title}
           </h2>
           <p className="font-['Inter'] text-[#868E92] mt-4 max-w-lg mx-auto">
-            Feitos por emergencistas, para emergencistas. Prontos para usar durante o atendimento, no celular.
+            {t.fluxogramas.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {fluxogramas.map((flux, index) => (
+          {t.fluxogramas.list.map((flux, index) => (
             <motion.div
-              key={flux.id}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -64,7 +60,7 @@ export function Fluxogramas() {
 
               <Button variant="secondary" className="w-full gap-2 flex items-center justify-center text-[14px] !py-2" onClick={() => setIsModalOpen(true)}>
                 <Download size={16} />
-                [Baixar Gratuito]
+                {t.fluxogramas.downloadBtn}
               </Button>
             </motion.div>
           ))}
@@ -88,23 +84,23 @@ export function Fluxogramas() {
               onClick={e => e.stopPropagation()}
             >
               <h3 className="font-['Orbitron'] font-bold text-[24px] text-white mb-2 uppercase text-shadow-neon text-center">
-                Material Exclusivo
+                {t.fluxogramas.modalTitle}
               </h3>
               <p className="font-['Inter'] text-[14px] text-[#B9B7BA] mb-6 text-center">
-                Digite seu e-mail para receber o fluxograma em alta resolução.
+                {t.fluxogramas.modalText}
               </p>
 
               <div className="flex flex-col gap-4">
                 <input
                   type="email"
-                  placeholder="Seu melhor e-mail"
+                  placeholder={t.fluxogramas.modalPlaceholder}
                   className="w-full bg-[#0D1C24] border border-[#3A4248] rounded-[8px] px-4 py-3 text-[#E8E8EA] font-['Inter'] focus:border-[#20CAD8] focus:ring-1 focus:ring-[#20CAD815] outline-none transition-all placeholder:text-[#636A6F]"
                 />
                 <Button variant="primary" className="w-full justify-center" onClick={() => setIsModalOpen(false)}>
-                  ENVIAR FLUXOGRAMA
+                  {t.fluxogramas.modalCta}
                 </Button>
                 <p className="font-['Inter'] text-[13px] text-[#868E92] text-center mt-2">
-                  Material exclusivo. Sem spam.
+                  {t.fluxogramas.modalNote}
                 </p>
               </div>
             </motion.div>

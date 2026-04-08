@@ -4,8 +4,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Globe, Video, Link2, Mail } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-[#0A0E14] border-t border-[#3A4248] pt-20 pb-10">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -20,35 +23,32 @@ export function Footer() {
               className="h-8 md:h-10 w-auto filter drop-shadow-[0_0_5px_rgba(32,202,216,0.3)] mb-2"
             />
             <p className="font-['Inter'] text-[13px] text-[#636A6F] leading-relaxed max-w-[220px]">
-              O maior porta-voz da Medicina de Emergência na América Latina.
+              {t.footer.description}
             </p>
             <p className="font-['Orbitron'] text-[11px] text-[#20CAD8] uppercase tracking-[0.15em] drop-shadow-[0_0_5px_#20CAD8]">
-              Desde 2019 · HC-USP · InCor
+              {t.footer.since}
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
-            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">Cursos</h4>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">ESC — Emergência Sob Controle</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">SIMM Academy</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Próximas Turmas</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Certificações</Link>
+            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">{t.footer.courses.title}</h4>
+            {t.footer.courses.links.map((link) => (
+              <Link key={link} href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">{link}</Link>
+            ))}
           </div>
 
           <div className="flex flex-col gap-4">
-            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">Recursos</h4>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Calculadoras Clínicas</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Fluxogramas Open Access</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Global Insights</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Desafio da Semana</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Plantão SIMM (Newsletter)</Link>
+            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">{t.footer.resources.title}</h4>
+            {t.footer.resources.links.map((link) => (
+              <Link key={link} href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">{link}</Link>
+            ))}
           </div>
 
           <div className="flex flex-col gap-4">
-            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">Institucional</h4>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Sobre Nós</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Professores</Link>
-            <Link href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">Contato</Link>
+            <h4 className="font-['Orbitron'] font-bold text-white mb-2 uppercase text-sm">{t.footer.institutional.title}</h4>
+            {t.footer.institutional.links.map((link) => (
+              <Link key={link} href="#" className="font-['Inter'] text-[14px] text-[#868E92] hover:text-[#20CAD8] transition-colors">{link}</Link>
+            ))}
             <div className="flex gap-3 mt-2">
               <a href="#" className="text-[#636A6F] hover:text-[#20CAD8] hover:drop-shadow-[0_0_8px_#20CAD8] transition-all p-2 bg-[#111B22] rounded-full border border-[#3A4248] hover:border-[#20CAD8]">
                 <Globe size={18} strokeWidth={1.5} />
@@ -70,7 +70,7 @@ export function Footer() {
         {/* Frase final */}
         <div className="text-center py-8 border-t border-b border-[#20CAD818] mb-8">
           <p className="font-['Orbitron'] text-[14px] md:text-[16px] text-[#20CAD8] drop-shadow-[0_0_8px_#20CAD8] uppercase tracking-[0.12em]">
-            A Emergência SIMM não vende cursos. Forma médicos.
+            {t.footer.tagline}
           </p>
         </div>
 
@@ -78,11 +78,11 @@ export function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-['Inter'] text-[13px] text-[#636A6F]">
-            © {new Date().getFullYear()} Emergência SIMM. Todos os direitos reservados.
+            © {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="font-['Inter'] text-[13px] text-[#636A6F] hover:text-[#20CAD8] transition-colors">Termos de Uso</Link>
-            <Link href="#" className="font-['Inter'] text-[13px] text-[#636A6F] hover:text-[#20CAD8] transition-colors">Política de Privacidade</Link>
+            <Link href="#" className="font-['Inter'] text-[13px] text-[#636A6F] hover:text-[#20CAD8] transition-colors">{t.footer.terms}</Link>
+            <Link href="#" className="font-['Inter'] text-[13px] text-[#636A6F] hover:text-[#20CAD8] transition-colors">{t.footer.privacy}</Link>
           </div>
         </div>
       </div>

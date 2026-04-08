@@ -3,41 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Smartphone, Cpu, Users, Wrench, RefreshCw } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
-const pillars = [
-  {
-    icon: Smartphone,
-    title: "APP SIMM Academy",
-    text: "Estude de qualquer lugar, a qualquer hora. No intervalo do plantão. No trajeto para o hospital. Antes de dormir. O conhecimento que você precisa, no momento que você precisa, no formato que cabe na sua rotina.",
-    tag: "iOS & Android",
-  },
-  {
-    icon: Cpu,
-    title: "Inteligência Artificial Integrada",
-    text: "IA como aliada no seu raciocínio clínico — não como substituta do professor, mas como aceleradora do seu aprendizado. Tire dúvidas instantâneas, aprofunde temas complexos, revise conceitos na velocidade que o plantão exige. É como ter um preceptor do HC-USP no bolso.",
-    tag: "IA · 24h",
-  },
-  {
-    icon: Users,
-    title: "Comunidade Exclusiva de Médicos",
-    text: "Acesso direto a professores e a colegas que entendem sua realidade. Discussão de casos em tempo real. Networking com emergencistas de todo o Brasil. Porque nenhum médico evolui sozinho — e os melhores se cercam de quem os desafia.",
-    tag: "+10.000 membros",
-  },
-  {
-    icon: Wrench,
-    title: "Ferramentas de Plantão Gratuitas",
-    text: "Calculadoras de scores clínicos (SOFA, Glasgow, qSOFA, Wells, HEART, NIHSS), tabelas de diluição e fluxogramas de conduta — prontos para usar durante o atendimento. Sem login. Sem anúncio. Feitos por emergencistas, para emergencistas.",
-    tag: "Open Access",
-  },
-  {
-    icon: RefreshCw,
-    title: "Atualização Contínua Baseada em Evidências",
-    text: "A medicina muda. Nós mudamos junto. Novos módulos, atualizações de protocolos e curadoria das principais revistas internacionais — NEJM, Lancet, JAMA, Annals of Emergency Medicine — traduzidos para o que importa no seu plantão.",
-    tag: "NEJM · JAMA · Lancet",
-  },
-];
+const icons = [Smartphone, Cpu, Users, Wrench, RefreshCw];
 
 export function Ecosystem() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 bg-[#0A0E14] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,42,48,0.5)_0%,transparent_70%)] pointer-events-none" />
@@ -51,22 +23,20 @@ export function Ecosystem() {
           className="text-center mb-6"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            Ecossistema SIMM
+            {t.ecosystem.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[28px] md:text-[42px] text-white text-shadow-neon mb-5 leading-tight">
-            Ao entrar para a SIMM, você não compra um curso.<br className="hidden md:block" />
-            Você passa a fazer parte de um ecossistema.
+            {t.ecosystem.title}
           </h2>
           <p className="font-['Inter'] text-[16px] text-[#868E92] max-w-2xl mx-auto">
-            Médicos que buscam maestria técnica e segurança profissional. Uma comunidade que troca experiências,
-            discute casos e evolui junta — dentro e fora do plantão.
+            {t.ecosystem.subtitle}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-          {pillars.map((pillar, i) => {
-            const Icon = pillar.icon;
-            const isLast = i === pillars.length - 1;
+          {t.ecosystem.pillars.map((pillar, i) => {
+            const Icon = icons[i];
+            const isLast = i === t.ecosystem.pillars.length - 1;
             return (
               <motion.div
                 key={pillar.title}

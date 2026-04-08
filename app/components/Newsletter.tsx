@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./Button";
 import { MailOpen, Check } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Newsletter() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,24 +30,17 @@ export function Newsletter() {
             <div className="flex items-center gap-4 mb-5">
               <MailOpen size={32} className="text-[#20CAD8] drop-shadow-[0_0_8px_#20CAD8]" strokeWidth={1.5} />
               <span className="font-['Orbitron'] text-[#20CAD8] text-[12px] uppercase tracking-[0.15em] drop-shadow-[0_0_5px_#20CAD8]">
-                Plantão SIMM
+                {t.newsletter.badge}
               </span>
             </div>
             <h2 className="font-['Orbitron'] font-bold text-[28px] md:text-[38px] text-white text-shadow-neon mb-5 leading-tight">
-              Uma vez por semana. Direto ao ponto.<br className="hidden md:block" />
-              O que você precisa saber para o próximo plantão.
+              {t.newsletter.title}
             </h2>
             <p className="font-['Inter'] text-[15px] text-[#B9B7BA] leading-relaxed mb-5">
-              Sem enrolação. Sem teoria inútil. Sem spam. Só o que faz diferença na sala de emergência.
+              {t.newsletter.subtitle}
             </p>
             <ul className="space-y-2">
-              {[
-                "Caso clínico da semana com raciocínio guiado",
-                "Curadoria das principais revistas internacionais",
-                "Ferramenta ou score em destaque",
-                "Recomendações de leitura além da medicina",
-                "Novidades do ecossistema SIMM",
-              ].map((item) => (
+              {t.newsletter.items.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="text-[#20CAD8] mt-0.5 drop-shadow-[0_0_4px_#20CAD8]">
                     <Check size={15} strokeWidth={2.5} />
@@ -66,15 +61,15 @@ export function Newsletter() {
               <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                 <input
                   type="email"
-                  placeholder="Seu melhor email"
+                  placeholder={t.newsletter.placeholder}
                   className="bg-[#0D1C24] border border-[#3A4248] rounded-[8px] h-[56px] px-6 font-['Inter'] text-[#E8E8EA] placeholder:text-[#636A6F] focus:border-[#20CAD8] focus:shadow-[0_0_0_3px_rgba(32,202,216,0.15)] focus:outline-none transition-all w-full"
                   required
                 />
                 <Button variant="primary" type="submit" className="w-full h-[56px]">
-                  Quero receber o Plantão SIMM
+                  {t.newsletter.cta}
                 </Button>
                 <span className="font-['Inter'] text-[13px] text-[#868E92] text-center mt-2">
-                  +8.500 médicos já recebem. Grátis. Cancele quando quiser.
+                  {t.newsletter.social}
                 </span>
               </form>
             ) : (
@@ -87,10 +82,10 @@ export function Newsletter() {
                   <Check size={28} className="text-[#20CAD8] drop-shadow-[0_0_8px_#20CAD8]" strokeWidth={2.5} />
                 </div>
                 <h3 className="font-['Orbitron'] font-bold text-[20px] text-white text-shadow-neon mb-2">
-                  Você está dentro!
+                  {t.newsletter.successTitle}
                 </h3>
                 <p className="font-['Inter'] text-[14px] text-[#B9B7BA]">
-                  Toda segunda-feira, direto na sua caixa de entrada.
+                  {t.newsletter.successText}
                 </p>
               </motion.div>
             )}

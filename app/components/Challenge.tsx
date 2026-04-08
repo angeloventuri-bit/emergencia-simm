@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeartPulse, Zap, CircleCheck, CircleX } from "lucide-react";
 import { Button } from "./Button";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Challenge() {
+  const { t } = useTranslation();
   const [status, setStatus] = useState<"idle" | "playing" | "success" | "fail">("idle");
 
   const handleStart = () => setStatus("playing");
@@ -24,18 +26,16 @@ export function Challenge() {
           className="text-center mb-8"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-3 block">
-            Desafio da Semana
+            {t.challenge.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[28px] md:text-[36px] text-white text-shadow-neon mb-4">
-            Você consegue salvar este paciente?
+            {t.challenge.title}
           </h2>
           <p className="font-['Inter'] text-[15px] text-[#B9B7BA] leading-relaxed max-w-lg mx-auto">
-            Todo domingo, um novo caso clínico curto e interativo. Baseado em pacientes reais atendidos no
-            HC-USP. Você recebe os dados, toma as decisões e vê as consequências — em tempo real.
+            {t.challenge.subtitle}
           </p>
           <p className="font-['Inter'] text-[13px] text-[#636A6F] mt-3">
-            Leva 3 minutos. Não precisa de login. E pode mudar como você pensa sobre o próximo caso grave que
-            cruzar a porta do seu PS.
+            {t.challenge.subNote}
           </p>
         </motion.div>
 
@@ -62,18 +62,17 @@ export function Challenge() {
                   className="text-[#20CAD8] mb-6 drop-shadow-[0_0_10px_#20CAD8] filter-neon-pulse"
                 />
                 <span className="font-['JetBrains_Mono'] text-[12px] text-[#20CAD8] uppercase tracking-[0.1em] mb-4 bg-[#20CAD810] px-3 py-1 rounded">
-                  Desafio #42 · HC-USP
+                  {t.challenge.tag}
                 </span>
                 <h3 className="font-['Orbitron'] font-bold text-[20px] md:text-[24px] text-white text-shadow-neon mb-4 uppercase">
-                  Caso Clínico
+                  {t.challenge.caseTitle}
                 </h3>
                 <p className="font-['Inter'] text-[15px] text-[#B9B7BA] mb-8 leading-relaxed max-w-[420px]">
-                  Homem, 58 anos, relata dor torácica opressiva irradiando para braço esquerdo há 40 minutos.
-                  Sudorese fria. PA: 160×90. FC: 102. SatO₂: 96%. ECG ainda não realizado. O que você faz primeiro?
+                  {t.challenge.caseText}
                 </p>
                 <Button variant="primary" onClick={handleStart} className="gap-2 flex items-center shadow-[0_0_30px_rgba(32,202,216,0.5)]">
                   <Zap size={18} />
-                  Aceitar o Desafio
+                  {t.challenge.ctaStart}
                 </Button>
               </motion.div>
             )}
@@ -87,33 +86,18 @@ export function Challenge() {
                 className="flex flex-col items-center w-full"
               >
                 <h3 className="font-['Orbitron'] font-bold text-[18px] md:text-[20px] text-white mb-6 uppercase">
-                  Qual é a conduta imediata?
+                  {t.challenge.questionTitle}
                 </h3>
                 <div className="flex flex-col gap-4 w-full">
-                  <button
-                    onClick={handleSuccess}
-                    className="w-full text-left bg-[#0D1C24] border border-[#3A4248] rounded-[8px] p-4 text-[#E8E8EA] hover:border-[#20CAD8] hover:bg-[#20CAD810] transition-all font-['Inter']"
-                  >
-                    A. Realizar ECG em até 10 minutos
-                  </button>
-                  <button
-                    onClick={handleFail}
-                    className="w-full text-left bg-[#0D1C24] border border-[#3A4248] rounded-[8px] p-4 text-[#E8E8EA] hover:border-[#20CAD8] hover:bg-[#20CAD810] transition-all font-['Inter']"
-                  >
-                    B. Administrar morfina imediatamente para analgesia
-                  </button>
-                  <button
-                    onClick={handleFail}
-                    className="w-full text-left bg-[#0D1C24] border border-[#3A4248] rounded-[8px] p-4 text-[#E8E8EA] hover:border-[#20CAD8] hover:bg-[#20CAD810] transition-all font-['Inter']"
-                  >
-                    C. Aguardar resultado das enzimas cardíacas
-                  </button>
-                  <button
-                    onClick={handleFail}
-                    className="w-full text-left bg-[#0D1C24] border border-[#3A4248] rounded-[8px] p-4 text-[#E8E8EA] hover:border-[#20CAD8] hover:bg-[#20CAD810] transition-all font-['Inter']"
-                  >
-                    D. Solicitar ecocardiograma de urgência
-                  </button>
+                  {t.challenge.answers.map((answer, i) => (
+                    <button
+                      key={i}
+                      onClick={i === 0 ? handleSuccess : handleFail}
+                      className="w-full text-left bg-[#0D1C24] border border-[#3A4248] rounded-[8px] p-4 text-[#E8E8EA] hover:border-[#20CAD8] hover:bg-[#20CAD810] transition-all font-['Inter']"
+                    >
+                      {answer}
+                    </button>
+                  ))}
                 </div>
               </motion.div>
             )}
@@ -132,7 +116,7 @@ export function Challenge() {
                   className="text-[#2ED573] mb-4 drop-shadow-[0_0_10px_#2ED573]"
                 />
                 <h3 className="font-['Orbitron'] font-bold text-[22px] text-white mb-2 uppercase text-shadow-neon text-center">
-                  Parabéns. Você salvou o paciente.
+                  {t.challenge.successTitle}
                 </h3>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -141,16 +125,13 @@ export function Challenge() {
                   className="w-full flex flex-col items-center border-t border-[#2ED57340] pt-6 mt-4"
                 >
                   <p className="font-['Inter'] text-[14px] text-[#B9B7BA] mb-5 text-center leading-relaxed">
-                    Mas esse foi <strong className="text-white">UM</strong> caso. Na emergência, você precisa acertar{" "}
-                    <strong className="text-white">TODOS</strong>. No curso ESC, você pratica dezenas de cenários como
-                    esse — com debriefing de quem atende no HC-USP todo dia. Na SIMM Academy, você tem 16 cursos
-                    completos para construir a base que transforma intuição em raciocínio sistemático.
+                    {t.challenge.successText}
                   </p>
                   <Button variant="primary" className="w-full">
-                    Quero treinar de verdade → Conhecer a SIMM Academy
+                    {t.challenge.successCta}
                   </Button>
                   <button onClick={handleReset} className="mt-4 text-[#868E92] hover:text-[#20CAD8] text-[13px] font-['Outfit'] transition-colors">
-                    Tentar outro desafio
+                    {t.challenge.successRetry}
                   </button>
                 </motion.div>
               </motion.div>
@@ -170,7 +151,7 @@ export function Challenge() {
                   className="text-[#FF4757] mb-4 drop-shadow-[0_0_10px_#FF4757]"
                 />
                 <h3 className="font-['Orbitron'] font-bold text-[22px] text-white mb-2 uppercase text-shadow-neon text-center">
-                  Dessa vez o paciente não sobreviveu.
+                  {t.challenge.failTitle}
                 </h3>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -179,15 +160,13 @@ export function Challenge() {
                   className="w-full flex flex-col items-center border-t border-[#FF475740] pt-6 mt-4"
                 >
                   <p className="font-['Inter'] text-[14px] text-[#B9B7BA] mb-5 text-center leading-relaxed">
-                    Dói ler isso? Imagine viver isso. Por isso a SIMM existe: para que o erro aconteça aqui — num
-                    ambiente seguro, com feedback de quem já cometeu os mesmos erros e aprendeu com cada um deles —
-                    e nunca no plantão, com um paciente real.
+                    {t.challenge.failText}
                   </p>
                   <Button variant="primary" className="w-full">
-                    Quero treinar de verdade → Conhecer a SIMM Academy
+                    {t.challenge.failCta}
                   </Button>
                   <button onClick={handleReset} className="mt-4 text-[#868E92] hover:text-[#FF4757] text-[13px] font-['Outfit'] transition-colors">
-                    Tentar novamente
+                    {t.challenge.failRetry}
                   </button>
                 </motion.div>
               </motion.div>

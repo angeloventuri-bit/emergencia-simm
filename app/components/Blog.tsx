@@ -4,53 +4,24 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "./Button";
 import { ArrowRight, User } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Blog() {
-  const [activeCategory, setActiveCategory] = useState("Todos");
+  const { t } = useTranslation();
+  const [activeCategory, setActiveCategory] = useState(t.blog.categories[0]);
 
-  const categories = ["Todos", "Casos Clínicos", "Protocolos", "Carreira", "Procedimentos"];
+  const posts = t.blog.posts.map((post, i) => ({
+    id: i + 1,
+    ...post,
+  }));
 
-  const posts = [
-    {
-      id: 1,
-      title: "Uso do POCUS na Parada Cardiorrespiratória",
-      excerpt: "Como o ultrassom point-of-care pode mudar o desfecho em PCR, e os protocolos mais recentes (FEEL, CAUSE) — direto das evidências para o seu plantão.",
-      author: "Dr. Roberto",
-      date: "03 Abr 2026",
-      category: "Procedimentos",
-      featured: true,
-      source: "NEJM",
-    },
-    {
-      id: 2,
-      title: "Atualizações AHA 2025: O que mudou?",
-      excerpt: "Um resumo prático das últimas diretrizes para suporte avançado de vida cardiovascular. O que entra, o que sai e o que muda no próximo plantão.",
-      author: "Dra. Letícia",
-      date: "28 Mar 2026",
-      category: "Protocolos",
-      source: "AHA Circulation",
-    },
-    {
-      id: 3,
-      title: "Manejo da Cetoacidose Diabética no PS",
-      excerpt: "Os 5 pilares fundamentais que você não pode esquecer na primeira hora de atendimento — análise crítica do que realmente funciona.",
-      author: "Dr. Roberto",
-      date: "15 Mar 2026",
-      category: "Casos Clínicos",
-      source: "The Lancet",
-    },
-    {
-      id: 4,
-      title: "Intubação em Sequência Rápida: Escolha de Drogas",
-      excerpt: "Escolhendo o sedativo e bloqueador neuromuscular ideal baseado no perfil hemodinâmico do paciente — sem achismo, baseado em evidências.",
-      author: "Dra. Letícia",
-      date: "10 Mar 2026",
-      category: "Procedimentos",
-      source: "Annals of EM",
-    },
+  const blogImages = [
+    "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=800&auto=format&fit=crop",
   ];
 
-  const filteredPosts = activeCategory === "Todos"
+  const filteredPosts = activeCategory === t.blog.categories[0]
     ? posts.filter(p => !p.featured)
     : posts.filter(p => p.category === activeCategory && !p.featured);
 
@@ -68,20 +39,18 @@ export function Blog() {
         >
           <div>
             <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-              Global Insights
+              {t.blog.label}
             </span>
             <h2 className="font-['Orbitron'] font-bold text-[32px] md:text-[48px] text-white text-shadow-neon mb-3">
-              O que a ciência publicou<br className="hidden md:block" /> esta semana — mastigado para você.
+              {t.blog.title}
             </h2>
             <p className="font-['Inter'] text-[15px] text-[#868E92] max-w-xl leading-relaxed">
-              Curadoria semanal do que saiu de mais relevante nas principais revistas médicas do mundo.
-              NEJM, The Lancet, JAMA, Annals of Emergency Medicine — traduzido para linguagem prática,
-              com o que muda (ou não) no seu próximo plantão.
+              {t.blog.subtitle}
             </p>
           </div>
 
           <div className="flex gap-2 overflow-x-auto pb-4 md:pb-0 w-full md:w-auto scrollbar-hide snap-x shrink-0">
-            {categories.map((cat) => (
+            {t.blog.categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
@@ -98,7 +67,7 @@ export function Blog() {
         </motion.div>
 
         {/* Featured Post */}
-        {activeCategory === "Todos" && featuredPost && (
+        {activeCategory === t.blog.categories[0] && featuredPost && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -125,7 +94,7 @@ export function Blog() {
 
             <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
               <span className="font-['JetBrains_Mono'] text-[11px] text-[#636A6F] uppercase tracking-wider mb-3">
-                Destaque da semana
+                {t.blog.featuredLabel}
               </span>
               <h3 className="font-['Inter'] font-semibold text-[22px] md:text-[28px] text-white mb-4 group-hover:text-[#20CAD8] transition-colors leading-tight">
                 {featuredPost.title}
@@ -164,6 +133,17 @@ export function Blog() {
               transition={{ delay: i * 0.1 }}
               className="bg-[#111B22] border border-[#3A4248] rounded-[12px] p-6 hover:bg-[#1A2730] hover:border-[#20CAD840] hover:shadow-[0_0_20px_rgba(32,202,216,0.1)] hover:-translate-y-1 transition-all group cursor-pointer flex flex-col h-full"
             >
+              {blogImages[i] && (
+                <div className="w-full h-[140px] rounded-[8px] overflow-hidden mb-4 relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={blogImages[i]}
+                    alt=""
+                    className="w-full h-full object-cover opacity-60 saturate-50 contrast-125 brightness-90 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111B22] via-transparent to-transparent" />
+                </div>
+              )}
               <div className="mb-4 flex-1">
                 <div className="flex gap-2 mb-4">
                   <span className="inline-block bg-[#20CAD815] border border-[#20CAD830] text-[#20CAD8] font-['Outfit'] font-medium text-[10px] uppercase tracking-[0.1em] px-2.5 py-0.5 rounded-full">
@@ -198,7 +178,7 @@ export function Blog() {
 
         {filteredPosts.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-[#868E92] font-['Inter']">Nenhum artigo encontrado nesta categoria.</p>
+            <p className="text-[#868E92] font-['Inter']">{t.blog.empty}</p>
           </div>
         )}
 
@@ -209,10 +189,10 @@ export function Blog() {
           className="text-center mt-12"
         >
           <Button variant="secondary">
-            Ver últimas publicações →
+            {t.blog.cta}
           </Button>
           <p className="font-['Inter'] text-[13px] text-[#636A6F] mt-4">
-            Não é resumo de abstract. É análise crítica de quem vive a emergência.
+            {t.blog.ctaSub}
           </p>
         </motion.div>
       </div>

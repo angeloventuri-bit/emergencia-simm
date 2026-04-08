@@ -2,26 +2,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-const quotes = [
-  {
-    text: "Enquanto cursos tradicionais focam em memorização, nós desenvolvemos sua capacidade de triagem mental e tomada de decisão sob pressão extrema.",
-  },
-  {
-    text: "Nascemos dentro do maior complexo hospitalar da América Latina. Nosso ensino não é baseado apenas em livros, mas na experiência de quem trabalha nas salas de emergência mais críticas do país.",
-  },
-  {
-    text: "O ACLS ensina a tratar uma parada cardiorrespiratória. Nós ensinamos você a evitar que ela aconteça.",
-  },
-  {
-    text: "Do ultrassom à gasometria, cada ferramenta é ensinada com um único propósito: precisão diagnóstica imediata para aumentar a chance de sobrevida do seu paciente.",
-  },
-  {
-    text: "Ao entrar para a SIMM, você não compra um curso; você passa a fazer parte de um ecossistema de médicos que buscam maestria técnica e segurança profissional.",
-  },
-];
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function AuthorityQuotes() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 bg-[#0D1C24] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#20CAD830] to-transparent" />
@@ -29,7 +14,7 @@ export function AuthorityQuotes() {
 
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide snap-x snap-mandatory">
-          {quotes.map((quote, i) => (
+          {t.authorityQuotes.quotes.map((quote, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -43,7 +28,7 @@ export function AuthorityQuotes() {
                 &ldquo;
               </span>
               <p className="font-['Inter'] text-[15px] text-[#B9B7BA] leading-relaxed">
-                {quote.text}
+                {quote}
               </p>
             </motion.div>
           ))}
@@ -51,7 +36,7 @@ export function AuthorityQuotes() {
 
         {/* Dots indicator */}
         <div className="flex justify-center gap-2 mt-6">
-          {quotes.map((_, i) => (
+          {t.authorityQuotes.quotes.map((_, i) => (
             <div
               key={i}
               className={`rounded-full transition-all ${i === 0 ? "w-5 h-1.5 bg-[#20CAD8]" : "w-1.5 h-1.5 bg-[#3A4248]"}`}

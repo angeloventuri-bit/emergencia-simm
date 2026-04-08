@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#0A0E14] text-[#E8E8EA] font-[Inter] antialiased overflow-x-hidden selection:bg-[#20CAD8] selection:text-[#0A0E14]">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

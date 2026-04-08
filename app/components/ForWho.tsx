@@ -3,27 +3,19 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-
-const forYou = [
-  "Você faz plantão em PS e quer sentir mais segurança ao atender pacientes graves",
-  "Você se formou recentemente e percebeu que a faculdade não te preparou para a realidade do plantão",
-  "Você é residente e quer chegar ao R1 com uma base clínica que seus colegas não têm",
-  "Você é médico experiente e quer se atualizar sem perder tempo com conteúdo superficial",
-  "Você quer parar de depender do colega mais velho quando o caso complica",
-  "Você quer liderar uma PCR com convicção — não apenas fazer compressões",
-  "Você quer interpretar um ECG, uma gasometria ou um POCUS com velocidade e precisão",
-  "Você quer dormir tranquilo depois de um plantão difícil — sabendo que fez tudo certo",
-];
-
-const notForYou = [
-  "Você busca apenas um certificado para pendurar na parede",
-  "Você quer um curso que \"passa rápido\" sem exigir engajamento",
-  "Você acha que já sabe tudo e não precisa se atualizar",
-];
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function ForWho() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 bg-[#0D1C24] relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1600&auto=format&fit=crop"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.06] saturate-0 pointer-events-none"
+      />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(14,42,48,0.6)_0%,transparent_60%)] pointer-events-none" />
 
       <div className="max-w-[1100px] mx-auto px-6 relative z-10">
@@ -35,15 +27,15 @@ export function ForWho() {
           className="text-center mb-14"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            Qualificação de Audiência
+            {t.forWho.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[28px] md:text-[42px] text-white text-shadow-neon leading-tight">
-            A SIMM foi construída para você se...
+            {t.forWho.title}
           </h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Para quem É */}
+          {/* Para quem E */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -56,11 +48,11 @@ export function ForWho() {
                 <Check size={16} className="text-[#20CAD8]" strokeWidth={2.5} />
               </div>
               <h3 className="font-['Orbitron'] font-bold text-[16px] text-[#20CAD8] uppercase tracking-wide drop-shadow-[0_0_5px_#20CAD8]">
-                A SIMM é para você
+                {t.forWho.forYouTitle}
               </h3>
             </div>
             <ul className="space-y-4">
-              {forYou.map((item, i) => (
+              {t.forWho.forYou.map((item, i) => (
                 <motion.li
                   key={i}
                   initial={{ opacity: 0, x: -10 }}
@@ -80,7 +72,7 @@ export function ForWho() {
             </ul>
           </motion.div>
 
-          {/* Para quem NÃO É */}
+          {/* Para quem NAO E */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -94,11 +86,11 @@ export function ForWho() {
                   <X size={16} className="text-[#FF4757]" strokeWidth={2.5} />
                 </div>
                 <h3 className="font-['Orbitron'] font-bold text-[16px] text-[#FF4757] uppercase tracking-wide">
-                  A SIMM provavelmente não é para você
+                  {t.forWho.notForYouTitle}
                 </h3>
               </div>
               <ul className="space-y-4">
-                {notForYou.map((item, i) => (
+                {t.forWho.notForYou.map((item, i) => (
                   <motion.li
                     key={i}
                     initial={{ opacity: 0, x: 10 }}
@@ -126,13 +118,12 @@ export function ForWho() {
               transition={{ delay: 0.5 }}
               className="bg-[#111B22] border border-[#3A4248] rounded-[16px] p-8"
             >
-              <p className="font-['Inter'] text-[14px] text-[#636A6F] mb-3">Sabia que...</p>
+              <p className="font-['Inter'] text-[14px] text-[#636A6F] mb-3">{t.forWho.statLabel}</p>
               <p className="font-['Orbitron'] font-bold text-[36px] text-[#20CAD8] drop-shadow-[0_0_10px_#20CAD8] mb-1">
-                58%
+                {t.forWho.statValue}
               </p>
               <p className="font-['Inter'] text-[14px] text-[#B9B7BA] leading-relaxed">
-                dos médicos experimentam síndrome do impostor clínico. Na emergência, essa hesitação pode
-                custar uma vida. A SIMM existe para transformar isso.
+                {t.forWho.statText}
               </p>
             </motion.div>
           </motion.div>

@@ -3,10 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const seals = ["AHA", "ERC", "ASSET", "ACLS", "ATLS", "PALS"];
 
 export function GlobalSeal() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 bg-[#0A0E14] relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(32,202,216,0.04)_0%,transparent_65%)] pointer-events-none" />
@@ -28,18 +31,13 @@ export function GlobalSeal() {
           </div>
 
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            Selo de Alinhamento Global
+            {t.globalSeal.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[24px] md:text-[36px] text-white text-shadow-neon mb-6 leading-tight">
-            Conteúdo construído sobre as principais diretrizes internacionais.
+            {t.globalSeal.title}
           </h2>
           <p className="font-['Inter'] text-[15px] text-[#868E92] max-w-[640px] mx-auto leading-relaxed mb-10">
-            Todo material da SIMM é desenvolvido, revisado e atualizado com base nas diretrizes da{" "}
-            <strong className="text-[#E8E8EA]">AHA (American Heart Association)</strong>,{" "}
-            <strong className="text-[#E8E8EA]">ERC (European Resuscitation Council)</strong>,{" "}
-            <strong className="text-[#E8E8EA]">ASSET</strong> e demais referências globais em medicina de emergência.
-            Você estuda com a segurança de quem segue o que há de mais atual e validado na literatura mundial —
-            sem achismo, sem opinião isolada, sem informação desatualizada.
+            {t.globalSeal.text}
           </p>
 
           {/* Seal badges */}

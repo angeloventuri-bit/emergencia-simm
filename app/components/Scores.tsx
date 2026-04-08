@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./Button";
 import { Terminal, ChevronDown } from "lucide-react";
 import CountUp from "react-countup";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Scores() {
+  const { t } = useTranslation();
   const [age, setAge] = useState("");
   const [history, setHistory] = useState("");
   const [ecg, setEcg] = useState("");
@@ -33,13 +35,13 @@ export function Scores() {
           className="text-center mb-16"
         >
           <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-            Ferramentas de Plantão · Gratuito
+            {t.scores.label}
           </span>
           <h2 className="font-['Orbitron'] font-bold text-[32px] md:text-[48px] text-white text-shadow-neon">
-            Scores clínicos na velocidade do plantão.
+            {t.scores.title}
           </h2>
           <p className="font-['Inter'] text-[#B9B7BA] mt-4">
-            SOFA, Glasgow, qSOFA, Wells, HEART, NIHSS — calculadoras prontas para usar durante o atendimento.
+            {t.scores.subtitle}
           </p>
         </motion.div>
 
@@ -52,7 +54,7 @@ export function Scores() {
           <div className="bg-[#0D1C24] border-b border-[#3A4248] px-6 py-4 flex items-center gap-3">
             <Terminal size={20} className="text-[#20CAD8]" />
             <span className="font-['JetBrains_Mono'] text-[14px] text-[#868E92]">
-              system/calculator.exe
+              {t.scores.terminal}
             </span>
           </div>
 
@@ -61,20 +63,20 @@ export function Scores() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label className="font-['Inter'] font-semibold text-[14px] text-[#B9B7BA]">
-                    Idade do Paciente
+                    {t.scores.ageLabel}
                   </label>
                   <input
                     type="number"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
-                    placeholder="Ex: 65"
+                    placeholder={t.scores.agePlaceholder}
                     className="bg-[#0D1C24] border border-[#3A4248] rounded-[8px] h-[48px] px-4 font-['JetBrains_Mono'] text-[#E8E8EA] placeholder:text-[#636A6F] focus:border-[#20CAD8] focus:shadow-[0_0_0_3px_rgba(32,202,216,0.15)] focus:outline-none transition-all"
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label className="font-['Inter'] font-semibold text-[14px] text-[#B9B7BA]">
-                    História Clínica
+                    {t.scores.historyLabel}
                   </label>
                   <div className="relative">
                     <select
@@ -82,10 +84,11 @@ export function Scores() {
                       onChange={(e) => setHistory(e.target.value)}
                       className="w-full bg-[#0D1C24] border border-[#3A4248] rounded-[8px] h-[48px] px-4 font-['Inter'] text-[#E8E8EA] appearance-none focus:border-[#20CAD8] focus:shadow-[0_0_0_3px_rgba(32,202,216,0.15)] focus:outline-none transition-all"
                     >
-                      <option value="" disabled>Selecione...</option>
-                      <option value="low">Baixa suspeita</option>
-                      <option value="med">Suspeita moderada</option>
-                      <option value="high">Alta suspeita</option>
+                      {t.scores.historyOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value} disabled={opt.value === ""}>
+                          {opt.label}
+                        </option>
+                      ))}
                     </select>
                     <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#636A6F] pointer-events-none" />
                   </div>
@@ -93,7 +96,7 @@ export function Scores() {
 
                 <div className="flex flex-col gap-2 md:col-span-2">
                   <label className="font-['Inter'] font-semibold text-[14px] text-[#B9B7BA]">
-                    Achados do ECG
+                    {t.scores.ecgLabel}
                   </label>
                   <div className="relative">
                     <select
@@ -101,10 +104,11 @@ export function Scores() {
                       onChange={(e) => setEcg(e.target.value)}
                       className="w-full bg-[#0D1C24] border border-[#3A4248] rounded-[8px] h-[48px] px-4 font-['Inter'] text-[#E8E8EA] appearance-none focus:border-[#20CAD8] focus:shadow-[0_0_0_3px_rgba(32,202,216,0.15)] focus:outline-none transition-all"
                     >
-                      <option value="" disabled>Selecione...</option>
-                      <option value="normal">Normal</option>
-                      <option value="repo">Alteração de repolarização</option>
-                      <option value="st">Desnível de ST significativo</option>
+                      {t.scores.ecgOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value} disabled={opt.value === ""}>
+                          {opt.label}
+                        </option>
+                      ))}
                     </select>
                     <ChevronDown size={16} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#636A6F] pointer-events-none" />
                   </div>
@@ -113,7 +117,7 @@ export function Scores() {
 
               <div className="pt-4">
                 <Button variant="secondary" type="submit" className="w-full h-[56px]">
-                  Calcular Score
+                  {t.scores.calculate}
                 </Button>
               </div>
             </form>
@@ -131,12 +135,12 @@ export function Scores() {
                   }`}>
                     <div>
                       <span className="font-['JetBrains_Mono'] text-[14px] text-[#868E92] block mb-1">
-                        RESULTADO OBTIDO:
+                        {t.scores.resultLabel}
                       </span>
                       <span className={`font-['Inter'] font-medium text-[16px] ${
                         score >= 4 ? 'text-[#FF4757]' : score >= 2 ? 'text-[#FFA502]' : 'text-[#2ED573]'
                       }`}>
-                        {score >= 4 ? 'Alto Risco (MACE 50-65%)' : score >= 2 ? 'Risco Intermediário' : 'Baixo Risco (MACE <2%)'}
+                        {score >= 4 ? t.scores.riskHigh : score >= 2 ? t.scores.riskMed : t.scores.riskLow}
                       </span>
                     </div>
                     <div className={`font-['Orbitron'] font-bold text-[48px] drop-shadow-[0_0_10px_currentColor] ${

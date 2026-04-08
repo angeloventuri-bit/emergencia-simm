@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const PINS = [
   { top: "22%", left: "25%", large: false },
@@ -28,6 +29,8 @@ const PINS = [
 ];
 
 export function MapSection() {
+  const { t } = useTranslation();
+
   return (
     <section className="py-24 bg-[#0D1C24] relative overflow-hidden">
       {/* Abstract map node field */}
@@ -71,20 +74,18 @@ export function MapSection() {
             className="flex-1 max-w-[520px]"
           >
             <span className="font-['Orbitron'] text-[#136C72] uppercase tracking-[0.15em] text-sm mb-4 block">
-              Alcance Nacional
+              {t.map.label}
             </span>
             <h2 className="font-['Orbitron'] font-bold text-[32px] md:text-[40px] text-white text-shadow-neon mb-6">
-              De norte a sul.<br /> Do Brasil ao mundo.
+              {t.map.title}
             </h2>
             <p className="font-['Inter'] text-[16px] text-[#B9B7BA] leading-relaxed mb-6">
-              Médicos formados pela SIMM estão atendendo em emergências de todo o país — e além das fronteiras.
-              Encontre colegas na sua região, veja o alcance da nossa comunidade e entenda por que a SIMM não é
-              apenas um curso: é um movimento.
+              {t.map.text}
             </p>
             <div className="flex items-center gap-2 mt-2">
               <MapPin size={14} className="text-[#20CAD8]" strokeWidth={2} />
               <span className="font-['JetBrains_Mono'] text-[12px] text-[#636A6F]">
-                Concluiu o curso presencial? Marque sua localização no mapa.
+                {t.map.pinNote}
               </span>
             </div>
           </motion.div>
@@ -95,11 +96,7 @@ export function MapSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center md:items-end text-center md:text-right gap-8"
           >
-            {[
-              { value: "10.000+", label: "Médicos formados" },
-              { value: "27", label: "Estados alcançados" },
-              { value: "6 anos", label: "De operação contínua" },
-            ].map((stat) => (
+            {t.map.stats.map((stat) => (
               <div key={stat.label} className="flex flex-col items-center md:items-end">
                 <span className="font-['Orbitron'] font-bold text-[48px] md:text-[56px] text-[#20CAD8] drop-shadow-[0_0_15px_#20CAD8] leading-none mb-1">
                   {stat.value}
