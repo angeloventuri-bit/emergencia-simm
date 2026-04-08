@@ -33,6 +33,8 @@ export function MapSection() {
 
   return (
     <section className="py-24 bg-[#0D1C24] relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.15] saturate-0 pointer-events-none" />
       {/* Abstract map node field */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none flex items-center justify-center">
         <div className="w-full h-full max-w-[1200px] relative mx-auto">

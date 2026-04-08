@@ -46,6 +46,8 @@ export function Challenge() {
           className="bg-[#0E2A30] border border-[#20CAD830] rounded-[16px] p-8 md:p-10 shadow-[0_0_30px_rgba(32,202,216,0.15)] text-center relative overflow-hidden min-h-[400px]"
         >
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#20CAD8] to-transparent opacity-50" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1200&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.08] saturate-0 pointer-events-none rounded-[16px]" />
 
           <AnimatePresence mode="wait">
             {status === "idle" && (

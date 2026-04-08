@@ -9,6 +9,8 @@ export function AuthorityQuotes() {
 
   return (
     <section className="py-20 bg-[#0D1C24] relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] saturate-0 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#20CAD830] to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#20CAD830] to-transparent" />
 

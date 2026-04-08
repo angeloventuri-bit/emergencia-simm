@@ -26,8 +26,11 @@ export function Scores() {
   };
 
   return (
-    <section id="ferramentas" className="py-24 bg-[#0A0E14]">
-      <div className="max-w-[800px] mx-auto px-6">
+    <section id="ferramentas" className="py-24 bg-[#0A0E14] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,42,48,0.4)_0%,transparent_70%)] pointer-events-none" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.05] saturate-0 pointer-events-none" />
+      <div className="max-w-[800px] mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

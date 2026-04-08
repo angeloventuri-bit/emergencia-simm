@@ -15,6 +15,8 @@ export function Testimonials() {
 
   return (
     <section className="py-24 bg-[#0D1C24] relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04] saturate-0 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(32,202,216,0.03)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">

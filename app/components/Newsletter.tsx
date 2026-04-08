@@ -16,7 +16,9 @@ export function Newsletter() {
   };
 
   return (
-    <section className="py-24 bg-[#0A0E14] relative border-y border-[#20CAD820]">
+    <section className="py-24 bg-[#0A0E14] relative border-y border-[#20CAD820] overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.05] saturate-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E2A3040] to-transparent pointer-events-none" />
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">

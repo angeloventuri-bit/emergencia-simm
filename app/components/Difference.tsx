@@ -30,6 +30,14 @@ export function Difference() {
           </h2>
         </motion.div>
 
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 rounded-2xl overflow-hidden relative h-[280px] lg:h-[360px]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://images.unsplash.com/photo-1551190822-a9ce113ac100?q=80&w=1600&auto=format&fit=crop" alt="" className="w-full h-full object-cover opacity-50 saturate-50 contrast-125" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0D1C24] via-[#0D1C24]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0D1C24]/60 via-transparent to-[#0D1C24]/60" />
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {t.difference.blocks.map((block, i) => {
             const Icon = icons[i];

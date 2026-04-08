@@ -23,6 +23,8 @@ export function GlobalSeal() {
           className="bg-[#111B22] border border-[#20CAD830] rounded-[20px] p-10 md:p-14 text-center relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#20CAD8] to-transparent opacity-60" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?q=80&w=1200&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.05] saturate-0 pointer-events-none rounded-[20px]" />
 
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 rounded-full bg-[#20CAD810] border border-[#20CAD830] flex items-center justify-center">

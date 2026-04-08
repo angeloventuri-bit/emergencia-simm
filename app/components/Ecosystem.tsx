@@ -12,6 +12,8 @@ export function Ecosystem() {
 
   return (
     <section className="py-24 bg-[#0A0E14] relative overflow-hidden">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.06] saturate-0 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,42,48,0.5)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
