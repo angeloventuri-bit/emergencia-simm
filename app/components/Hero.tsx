@@ -16,7 +16,7 @@ export function Hero() {
       <img
         src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1920&auto=format&fit=crop"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover opacity-30 scale-105 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none"
       />
 
       {/* Gradient overlays */}
