@@ -79,9 +79,14 @@ export function Teachers() {
                 <p className="font-['Inter'] text-[13px] text-[#636A6F] text-center mt-1">{teacher.title}</p>
               </div>
 
-              <p className="font-['Inter'] text-[13px] text-[#868E92] leading-relaxed mb-5 flex-1">
-                {teacher.bio}
-              </p>
+              <ul className="font-['Inter'] text-[12px] text-[#868E92] leading-relaxed mb-5 flex-1 space-y-1.5">
+                {teacher.bio.map((item, j) => (
+                  <li key={j} className="flex items-start gap-2">
+                    <span className="text-[#20CAD8] mt-1 shrink-0 text-[8px]">●</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
 
               <div className="flex flex-wrap gap-2 mt-auto justify-center">
                 {teacher.areas.map((area) => (

@@ -108,7 +108,7 @@ export interface Dictionary {
     label: string;
     title: string;
     subtitle: string;
-    list: { name: string; title: string; bio: string; areas: string[] }[];
+    list: { name: string; title: string; bio: string[]; areas: string[] }[];
     footnote: string;
     cta: string;
   };
