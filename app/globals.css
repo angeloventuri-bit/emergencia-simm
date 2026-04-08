@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+  --font-outfit: "Outfit", sans-serif;
+
+  --color-simm-bg-main: #0A0E14;
+  --color-simm-bg-sec: #0D1C24;
+  --color-simm-bg-card: #111B22;
+  --color-simm-bg-card-hover: #1A2730;
+  --color-simm-bg-accent: #0E2A30;
+
+  --color-simm-neon-pri: #20CAD8;
+  --color-simm-neon-vib: #1DCEDE;
+  --color-simm-neon-hov: #15A8B5;
+  --color-simm-neon-act: #0E8A96;
+  --color-simm-neon-20: #20CAD833;
+  --color-simm-neon-05: #20CAD80D;
+
+  --color-simm-teal-dark: #087378;
+  --color-simm-teal-mid: #136C72;
+  --color-simm-teal-icon: #17737E;
+
+  --color-simm-txt-head: #FFFFFF;
+  --color-simm-txt-body: #E8E8EA;
+  --color-simm-txt-logo: #DCDBDD;
+  --color-simm-txt-mut: #B9B7BA;
+  --color-simm-txt-sec: #868E92;
+  --color-simm-txt-dis: #636A6F;
+  --color-simm-brd-card: #3A4248;
+
+  --color-simm-err: #FF4757;
+  --color-simm-err-sub: #FF6B81;
+  --color-simm-suc: #2ED573;
+  --color-simm-warn: #FFA502;
+  --color-simm-tag: #ECCC68;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-simm-bg-main);
+    color: var(--color-simm-txt-body);
+    font-family: var(--font-inter);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-orbitron);
+    color: var(--color-simm-txt-head);
+    letter-spacing: 0.05em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-shadow-neon {
+    text-shadow: 0 0 10px var(--color-simm-neon-20),
+                 0 0 20px rgba(32, 202, 216, 0.3),
+                 0 0 40px rgba(32, 202, 216, 0.15);
+  }
+
+  .bg-hero-gradient {
+    background: linear-gradient(
+      180deg,
+      #0A0E14 0%,
+      #0D1C24 40%,
+      #0E2A30 70%,
+      #0A0E14 100%
+    );
+  }
+
+  .bg-glow-radial {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(32, 202, 216, 0.2) 0%,
+      rgba(32, 202, 216, 0.08) 40%,
+      transparent 70%
+    );
+  }
+
+  .bg-cta-gradient {
+    background: linear-gradient(
+      135deg,
+      #1DCEDE 0%,
+      #087378 100%
+    );
+  }
+
+  .shadow-btn-primary {
+    box-shadow: 0 0 20px rgba(32, 202, 216, 0.4);
+  }
+
+  .shadow-btn-primary-hover {
+    box-shadow: 0 0 30px rgba(32, 202, 216, 0.6), 0 0 60px rgba(32, 202, 216, 0.3);
+  }
+
+  .shadow-card-hover {
+    box-shadow: 0 0 20px rgba(32, 202, 216, 0.15);
+  }
+
+  .shadow-neon-pulse {
+    animation: neonPulse 3s ease-in-out infinite;
+  }
+
+  .filter-neon-logo {
+    filter: drop-shadow(0 0 8px #20CAD8)
+            drop-shadow(0 0 20px rgba(32, 202, 216, 0.6))
+            drop-shadow(0 0 40px rgba(32, 202, 216, 0.3));
+  }
+
+  .filter-neon-pulse {
+    animation: neonFilterPulse 3s ease-in-out infinite;
+  }
+
+  .bg-ecg-line {
+    background: linear-gradient(90deg, transparent, #20CAD8, transparent);
+  }
+
+  .border-gradient-primary {
+    border-image: linear-gradient(135deg, #1DCEDE, #087378) 1;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(32, 202, 216, 0.6); }
+  50%      { opacity: 0.85; box-shadow: 0 0 16px rgba(32, 202, 216, 0.8); }
+}
+
+@keyframes neonFilterPulse {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px rgba(32, 202, 216, 0.6)); }
+  50%      { opacity: 0.85; filter: drop-shadow(0 0 16px rgba(32, 202, 216, 0.8)); }
+}
+
+@keyframes ecgSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-ecg {
+  animation: ecgSweep 4s linear infinite;
 }
