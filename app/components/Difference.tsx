@@ -7,6 +7,13 @@ import { useTranslation } from "../i18n/LanguageContext";
 
 const icons = [Brain, Shield, Crosshair, Building2];
 
+const cardImages = [
+  "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=800&auto=format&fit=crop",
+];
+
 export function Difference() {
   const { t } = useTranslation();
 
@@ -30,10 +37,19 @@ export function Difference() {
           </h2>
         </motion.div>
 
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 rounded-2xl overflow-hidden relative h-[280px] lg:h-[360px]">
+        {/* Hero image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 rounded-2xl overflow-hidden relative h-[280px] lg:h-[360px]"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://images.unsplash.com/photo-1551190822-a9ce113ac100?q=80&w=1600&auto=format&fit=crop" alt="" className="w-full h-full object-cover opacity-50 saturate-50 contrast-125" />
+          <img
+            src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=1600&auto=format&fit=crop"
+            alt=""
+            className="w-full h-full object-cover opacity-50 saturate-50 contrast-125"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0D1C24] via-[#0D1C24]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0D1C24]/60 via-transparent to-[#0D1C24]/60" />
         </motion.div>
@@ -48,20 +64,33 @@ export function Difference() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.55, delay: i * 0.12 }}
-                className="group bg-[#111B22] border border-[#3A4248] rounded-[14px] p-8 hover:bg-[#1A2730] hover:border-[#20CAD840] hover:shadow-[0_0_24px_rgba(32,202,216,0.12)] transition-all duration-400 relative overflow-hidden"
+                className="group bg-[#111B22] border border-[#3A4248] rounded-[14px] overflow-hidden hover:bg-[#1A2730] hover:border-[#20CAD840] hover:shadow-[0_0_24px_rgba(32,202,216,0.12)] transition-all duration-400 relative"
               >
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#20CAD8] to-transparent -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
-                <Icon
-                  size={32}
-                  strokeWidth={1.5}
-                  className="text-[#20CAD8] mb-5 drop-shadow-[0_0_6px_#20CAD8]"
-                />
-                <h3 className="font-['Orbitron'] font-bold text-[18px] text-white mb-3 group-hover:text-shadow-neon transition-all">
-                  {block.title}
-                </h3>
-                <p className="font-['Inter'] text-[15px] text-[#868E92] leading-relaxed">
-                  {block.text}
-                </p>
+                {/* Card image */}
+                <div className="w-full h-[140px] relative overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cardImages[i]}
+                    alt=""
+                    className="w-full h-full object-cover opacity-40 saturate-50 contrast-125 brightness-90 group-hover:scale-105 group-hover:opacity-60 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111B22] via-[#111B22]/60 to-transparent" />
+                </div>
+
+                <div className="p-8 pt-5">
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#20CAD8] to-transparent -translate-x-full group-hover:translate-x-0 transition-transform duration-700" />
+                  <Icon
+                    size={32}
+                    strokeWidth={1.5}
+                    className="text-[#20CAD8] mb-4 drop-shadow-[0_0_6px_#20CAD8]"
+                  />
+                  <h3 className="font-['Orbitron'] font-bold text-[18px] text-white mb-3 group-hover:text-shadow-neon transition-all">
+                    {block.title}
+                  </h3>
+                  <p className="font-['Inter'] text-[15px] text-[#868E92] leading-relaxed">
+                    {block.text}
+                  </p>
+                </div>
               </motion.div>
             );
           })}
