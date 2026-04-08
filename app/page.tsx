@@ -18,12 +18,14 @@ import { Fluxogramas } from "./components/Fluxogramas";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
+import { MobileBottomBar } from "./components/MobileBottomBar";
 
 export default function Home() {
   return (
     <>
       <Header />
       <WhatsAppButton />
+      <MobileBottomBar />
       <main>
         <Hero />
         <Problem />
