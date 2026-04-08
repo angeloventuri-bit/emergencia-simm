@@ -17,11 +17,13 @@ import { Scores } from "./components/Scores";
 import { Fluxogramas } from "./components/Fluxogramas";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 
 export default function Home() {
   return (
     <>
       <Header />
+      <WhatsAppButton />
       <main>
         <Hero />
         <Problem />
