@@ -5,6 +5,11 @@ import { motion } from "framer-motion";
 import { Button } from "./Button";
 import CountUp from "react-countup";
 import { useTranslation } from "../i18n/LanguageContext";
+import { whatsappUrl } from "../lib/whatsapp";
+
+const ESC_WA_URL = whatsappUrl(
+  "Olá! Quero saber mais sobre o curso presencial ESC — Emergência Sob Controle."
+);
 
 export function Hero() {
   const { t } = useTranslation();
@@ -79,9 +84,16 @@ export function Hero() {
           transition={{ delay: 1.8, duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mb-4 md:mb-5 w-full sm:w-auto"
         >
-          <Button variant="primary" className="w-full sm:w-auto !px-5 !py-3 md:!px-7 md:!py-3.5 !text-[13px] md:!text-[14px]">
-            {t.hero.ctaPrimary}
-          </Button>
+          <a
+            href={ESC_WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto"
+          >
+            <Button variant="primary" className="w-full sm:w-auto !px-5 !py-3 md:!px-7 md:!py-3.5 !text-[13px] md:!text-[14px]">
+              {t.hero.ctaPrimary}
+            </Button>
+          </a>
           <Button variant="secondary" className="w-full sm:w-auto !px-5 !py-3 md:!px-7 md:!py-3.5 !text-[13px] md:!text-[14px]">
             {t.hero.ctaSecondary}
           </Button>

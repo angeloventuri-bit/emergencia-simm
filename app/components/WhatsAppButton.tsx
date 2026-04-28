@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { whatsappUrl } from "../lib/whatsapp";
 
-const PHONE = "5511985522341";
-const WA_URL = `https://wa.me/${PHONE}?text=${encodeURIComponent("Olá! Gostaria de saber mais sobre a Emergência SIMM.")}`;
+const WA_URL = whatsappUrl("Olá! Gostaria de saber mais sobre a Emergência SIMM.");
 
 export function WhatsAppButton() {
   const [show, setShow] = useState(false);

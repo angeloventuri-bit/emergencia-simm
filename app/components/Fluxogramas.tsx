@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { Button } from "./Button";
 import { FileText, Download } from "lucide-react";
 import { useTranslation } from "../i18n/LanguageContext";
+import { whatsappUrl } from "../lib/whatsapp";
 
 export function Fluxogramas() {
   const { t } = useTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section className="py-24 bg-[#0D1C24] relative">
@@ -58,55 +58,23 @@ export function Fluxogramas() {
                 </p>
               </div>
 
-              <Button variant="secondary" className="w-full gap-2 flex items-center justify-center text-[14px] !py-2" onClick={() => setIsModalOpen(true)}>
-                <Download size={16} />
-                {t.fluxogramas.downloadBtn}
-              </Button>
+              <a
+                href={whatsappUrl(
+                  `Olá! Gostaria de receber o fluxograma "${flux.title}".`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full"
+              >
+                <Button variant="secondary" className="w-full gap-2 flex items-center justify-center text-[14px] !py-2">
+                  <Download size={16} />
+                  {t.fluxogramas.downloadBtn}
+                </Button>
+              </a>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0A0E14E6] backdrop-blur-md"
-            onClick={() => setIsModalOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#111B22] border border-[#20CAD830] rounded-[16px] p-8 max-w-[400px] w-full shadow-[0_0_40px_rgba(32,202,216,0.15)] relative"
-              onClick={e => e.stopPropagation()}
-            >
-              <h3 className="font-['Orbitron'] font-bold text-[24px] text-white mb-2 uppercase text-shadow-neon text-center">
-                {t.fluxogramas.modalTitle}
-              </h3>
-              <p className="font-['Inter'] text-[14px] text-[#B9B7BA] mb-6 text-center">
-                {t.fluxogramas.modalText}
-              </p>
-
-              <div className="flex flex-col gap-4">
-                <input
-                  type="email"
-                  placeholder={t.fluxogramas.modalPlaceholder}
-                  className="w-full bg-[#0D1C24] border border-[#3A4248] rounded-[8px] px-4 py-3 text-[#E8E8EA] font-['Inter'] focus:border-[#20CAD8] focus:ring-1 focus:ring-[#20CAD815] outline-none transition-all placeholder:text-[#636A6F]"
-                />
-                <Button variant="primary" className="w-full justify-center" onClick={() => setIsModalOpen(false)}>
-                  {t.fluxogramas.modalCta}
-                </Button>
-                <p className="font-['Inter'] text-[13px] text-[#868E92] text-center mt-2">
-                  {t.fluxogramas.modalNote}
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

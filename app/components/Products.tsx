@@ -5,6 +5,11 @@ import { motion } from "framer-motion";
 import { Button } from "./Button";
 import { Stethoscope, Cpu, Clock } from "lucide-react";
 import { useTranslation } from "../i18n/LanguageContext";
+import { whatsappUrl } from "../lib/whatsapp";
+
+const ESC_WA_URL = whatsappUrl(
+  "Olá! Quero saber mais sobre o curso presencial ESC — Emergência Sob Controle."
+);
 
 export function Products() {
   const { t } = useTranslation();
@@ -73,9 +78,16 @@ export function Products() {
               </span>
             </div>
 
-            <Button variant="secondary" className="w-full sm:w-auto mt-auto">
-              {t.products.esc.cta}
-            </Button>
+            <a
+              href={ESC_WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto w-full sm:w-auto"
+            >
+              <Button variant="secondary" className="w-full sm:w-auto">
+                {t.products.esc.cta}
+              </Button>
+            </a>
           </motion.div>
 
           {/* Card SIMM Academy */}

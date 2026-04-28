@@ -5,6 +5,11 @@ import { motion } from "framer-motion";
 import { Button } from "./Button";
 import { Zap } from "lucide-react";
 import { useTranslation } from "../i18n/LanguageContext";
+import { whatsappUrl } from "../lib/whatsapp";
+
+const ESC_WA_URL = whatsappUrl(
+  "Olá! Quero saber mais sobre o curso presencial ESC — Emergência Sob Controle."
+);
 
 export function FinalCTA() {
   const { t } = useTranslation();
@@ -55,10 +60,12 @@ export function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
         >
-          <Button variant="primary" className="gap-2 flex items-center justify-center shadow-[0_0_40px_rgba(32,202,216,0.4)]">
-            <Zap size={18} />
-            {t.finalCta.ctaPrimary}
-          </Button>
+          <a href={ESC_WA_URL} target="_blank" rel="noopener noreferrer">
+            <Button variant="primary" className="gap-2 flex items-center justify-center shadow-[0_0_40px_rgba(32,202,216,0.4)] w-full">
+              <Zap size={18} />
+              {t.finalCta.ctaPrimary}
+            </Button>
+          </a>
           <Button variant="secondary" className="flex items-center justify-center">
             {t.finalCta.ctaSecondary}
           </Button>
