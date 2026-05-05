@@ -66,9 +66,11 @@ export function FinalCTA() {
               {t.finalCta.ctaPrimary}
             </Button>
           </a>
-          <Button variant="secondary" className="flex items-center justify-center">
-            {t.finalCta.ctaSecondary}
-          </Button>
+          <a href="https://simmacademy.emergenciasimm.com.br/" target="_blank" rel="noopener noreferrer">
+            <Button variant="secondary" className="flex items-center justify-center w-full">
+              {t.finalCta.ctaSecondary}
+            </Button>
+          </a>
         </motion.div>
 
         <motion.div

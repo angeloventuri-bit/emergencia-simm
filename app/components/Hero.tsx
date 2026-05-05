@@ -94,9 +94,16 @@ export function Hero() {
               {t.hero.ctaPrimary}
             </Button>
           </a>
-          <Button variant="secondary" className="w-full sm:w-auto !px-5 !py-3 md:!px-7 md:!py-3.5 !text-[13px] md:!text-[14px]">
-            {t.hero.ctaSecondary}
-          </Button>
+          <a
+            href="https://simmacademy.emergenciasimm.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto"
+          >
+            <Button variant="secondary" className="w-full sm:w-auto !px-5 !py-3 md:!px-7 md:!py-3.5 !text-[13px] md:!text-[14px]">
+              {t.hero.ctaSecondary}
+            </Button>
+          </a>
         </motion.div>
 
         {/* Credibility */}
